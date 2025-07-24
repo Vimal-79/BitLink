@@ -35,6 +35,16 @@ function Page() {
                 setshortURL('')
                 setgeneratedURL(`${process.env.NEXT_PUBLIC_BASE_PATH}/${shortURL}`)
                 setredirectTo(shortURL) // redirecting to shortURL dynamic page so it can be redirect ro original URL
+                toast.success('Url generated successfully', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
             }
             else {
                 setgeneratedURL('already exists')
