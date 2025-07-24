@@ -1,3 +1,4 @@
+"use server"
 import { redirect } from "next/navigation"
 import clientPromise from "@/lib/mongo"
 
@@ -7,7 +8,7 @@ export default async function Page({ params }) {
     
     
     const client = await clientPromise;
-    const db = client.db("BitLink")
+    const db = client.db("BitLink") 
     const collection = db.collection("Links")
 
     const doc = await collection.findOne({ "shortURL": shorturl })

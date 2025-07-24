@@ -1,4 +1,3 @@
-
 import clientPromise from "@/lib/mongo";
 
 export async function GET(request) {
@@ -7,7 +6,7 @@ export async function GET(request) {
 
 export async function POST(request) {
     const body = await request.json();
-    // console.log(body)
+    console.log(body)
 
     const client = await clientPromise;
     const db = client.db("BitLink")

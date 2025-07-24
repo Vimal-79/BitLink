@@ -1,10 +1,10 @@
 "use client"
 import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
-import { ToastContainer, toast, Bounce } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 
 
-function page() {
+function Page() {
 
     const [mounted, setmounted] = useState(false)
     const [url, seturl] = useState('')
@@ -106,4 +106,4 @@ function page() {
     }
 }
 
-export default page
+export default Page
