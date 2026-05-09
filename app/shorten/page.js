@@ -85,9 +85,9 @@ function Page() {
                     pauseOnHover
                     theme="colored"
                 />
-                <div className=' flex flex-col justify-center items-center h-130 relative'>
-                    <img className='absolute z-[-1] top-0' src="background_2.webp" alt="" />
-                    <div className='flex flex-col gap-3 py-10 mx-auto w-120 px-10 rounded-lg border border-gray-400/40 backdrop-blur-2xl shadow-2xl' >
+                <div className='flex flex-col justify-center items-center min-h-screen relative px-4'>
+                    <img className='absolute z-[-1] top-0 w-full h-full object-cover' src="background_2.webp" alt="" />
+                    <div className='flex flex-col gap-3 py-8 sm:py-10 mx-auto w-full max-w-md sm:max-w-lg md:max-w-xl lg:w-120 px-6 sm:px-10 rounded-lg border border-gray-400/40 backdrop-blur-2xl shadow-2xl' >
                         <input onChange={(e) => { seturl(e.target.value) }} className='border-1 border-gray-100/60 rounded-md p-2 text-white w-full focus:outline-2 focus:outline-gray-50 bg-gray-400/10 placeholder:text-gray-100/50 ' name="url" type='text' placeholder='URL' value={url} />
                         <input onChange={(e) => { setshortURL(e.target.value) }} className='border-1 border-gray-100/60 rounded-md text-white p-2 w-full focus:outline-2 focus:outline-gray-50 bg-gray-400/10 placeholder:text-gray-100/50' name="shorUrl" type='text' placeholder='shorten URL' value={shortURL} />
                         <button 
