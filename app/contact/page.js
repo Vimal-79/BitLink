@@ -69,7 +69,7 @@ function page() {
             </div>
           </div>
           <div className="bg-gray-700/50 p-4 sm:p-6 rounded-lg">
-            <h2 className="text-xl sm:text-2xl font-semibold text-white mb-3">Send a Message</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold text-white mb-3 ">Send a Message</h2>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-gray-300 text-sm font-medium mb-1">Name</label>
@@ -104,7 +104,7 @@ function page() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full font-semibold py-2 px-4 rounded-md transition-colors ${isSubmitting ? 'bg-purple-600 cursor-not-allowed' : 'bg-purple-800 hover:bg-purple-700'}`}
+                className={`w-full font-semibold py-2 px-4 rounded-md transition-colors ${isSubmitting ? 'bg-purple-600 cursor-not-allowed' : 'bg-purple-800 hover:bg-purple-700 cursor-pointer'}`}
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
@@ -118,7 +118,7 @@ function page() {
         )}
         <div className="text-center">
           <p className="text-gray-200 text-sm sm:text-base">
-            Thank you for using BitLink! Your feedback helps us improve.
+            Thank you for using BitLink! Your feedback helps me improve.
           </p>
         </div>
       </div>
