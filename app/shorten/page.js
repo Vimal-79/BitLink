@@ -52,10 +52,12 @@ function Page() {
         }).catch((error) => console.error(error));
     }
 
-    const handleClick = async () => {
+    const handleClick = async (e) => {
         // console.log("button was clicked");
         if (url && shortURL) {
+            e.target.disabled = true; // Disable the button to prevent multiple clicks
             generate();
+            e.target.disabled = false; // Disable the button to prevent multiple clicks
         }
     }
 
@@ -84,7 +86,7 @@ function Page() {
                     <div className='flex flex-col gap-3 py-10 mx-auto w-120 px-10 rounded-lg border border-gray-400/40 backdrop-blur-2xl shadow-2xl' >
                         <input onChange={(e) => { seturl(e.target.value) }} className='border-1 border-gray-100/60 rounded-md p-2 text-white w-full focus:outline-2 focus:outline-gray-50 bg-gray-400/10 placeholder:text-gray-100/50 ' name="url" type='text' placeholder='URL' value={url} />
                         <input onChange={(e) => { setshortURL(e.target.value) }} className='border-1 border-gray-100/60 rounded-md text-white p-2 w-full focus:outline-2 focus:outline-gray-50 bg-gray-400/10 placeholder:text-gray-100/50' name="shorUrl" type='text' placeholder='shorten URL' value={shortURL} />
-                        <button onClick={handleClick} className='border-1 border-purple-900 rounded-lg text-white p-2 cursor-pointer font-semibold bg-purple-800 '>Generate</button>
+                        <button onClick={handleClick} className='border-1 border-purple-900 rounded-lg text-white p-2 cursor-pointer font-semibold bg-purple-800' >Generate</button>
                         {(generatedURL && generatedURL != 'already exists') && <>
                             <span className='underline text-white'>Generated link</span>
                             <span className='flex gap-3'>
