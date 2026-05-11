@@ -14,15 +14,17 @@ function Page() {
     const [redirectTo, setredirectTo] = useState('')
     const [isLoading, setisLoading] = useState(false)
     const [imageLoaded, setImageLoaded] = useState(false)
+    const [validURL, setValidURL] = useState(false)
 
-    const generate = async () => {
+    const generate = async (cleanedShortURL) => {
         setisLoading(true)
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
+        const shortURLToSend = cleanedShortURL ?? shortURL
         const raw = JSON.stringify({
             "url": url,
-            "shortURL": shortURL
+            "shortURL": shortURLToSend
         });
 
         const requestOptions = {
@@ -37,9 +39,9 @@ function Page() {
             if (result.success) {
                 seturl('')
                 setshortURL('')
-                setgeneratedURL(`${process.env.NEXT_PUBLIC_BASE_PATH}/${shortURL}`)
-                setredirectTo(shortURL) // redirecting to shortURL dynamic page so it can be redirect ro original URL
-                toast.success('Url generated successfully', {
+                setgeneratedURL(`${process.env.NEXT_PUBLIC_BASE_PATH}/${shortURLToSend}`)
+                setredirectTo(shortURLToSend) // redirecting to shortURL dynamic page so it can be redirect ro original URL
+                toast.success('URL generated successfully', {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -51,6 +53,16 @@ function Page() {
                 });
             }
             else {
+                toast.error('URL already exists', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
                 setgeneratedURL('already exists')
             }
             setisLoading(false)
@@ -60,10 +72,33 @@ function Page() {
         });
     }
 
+    const validateShortURL = (input) => {
+        const cleaned = input.replaceAll(' ', '').replaceAll('/', '_')
+        if (cleaned !== input) {
+            return { isValid: true, cleaned, message: 'Spaces and slashes will be removed automatically' }
+        }
+        return { isValid: true, cleaned: input, message: '' }
+    }
+
     const handleClick = async (e) => {
-        // console.log("button was clicked");
-        if (url && shortURL && !isLoading) {
-            generate();
+        const validation = validateShortURL(shortURL)
+        setshortURL(validation.cleaned)
+
+        if (validation.message) {
+            toast.info(validation.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+        }
+
+        if (url && validation.cleaned && !isLoading) {
+            generate(validation.cleaned);
         }
     }
 
@@ -93,8 +128,8 @@ function Page() {
                         <div className='flex flex-col gap-3 py-8 sm:py-10 mx-auto w-full max-w-md sm:max-w-lg md:max-w-xl lg:w-120 px-6 sm:px-10 rounded-lg border border-gray-400/40 backdrop-blur-2xl shadow-2xl' >
                             <input onChange={(e) => { seturl(e.target.value) }} className='border-1 border-gray-100/60 rounded-md p-2 text-white w-full focus:outline-2 focus:outline-gray-50 bg-gray-400/10 placeholder:text-gray-100/50 ' name="url" type='text' placeholder='URL' value={url} />
                             <input onChange={(e) => { setshortURL(e.target.value) }} className='border-1 border-gray-100/60 rounded-md text-white p-2 w-full focus:outline-2 focus:outline-gray-50 bg-gray-400/10 placeholder:text-gray-100/50' name="shorUrl" type='text' placeholder='shorten URL' value={shortURL} />
-                            <button 
-                                onClick={handleClick} 
+                            <button
+                                onClick={handleClick}
                                 disabled={isLoading}
                                 className={`border-1 border-purple-900 rounded-lg text-white p-2 font-semibold ${isLoading ? 'bg-purple-600 cursor-not-allowed opacity-70' : 'bg-purple-800 cursor-pointer'}`}
                             >
