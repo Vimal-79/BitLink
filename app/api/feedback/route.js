@@ -14,7 +14,7 @@ export async function POST(request) {
 
     const client = await clientPromise
     const db = client.db('BitLink')
-    const collection = db.collection('feedback')
+    const collection = db.collection('Feedback')
 
     await collection.insertOne({
       name,
@@ -27,7 +27,7 @@ export async function POST(request) {
   } catch (error) {
     console.error('Feedback API error:', error)
     return Response.json(
-      { success: false, message: 'Unable to save feedback. Please try again later.' },
+      { success: false, message: 'Unable to save Feedback. Please try again later.' },
       { status: 500 }
     )
   }

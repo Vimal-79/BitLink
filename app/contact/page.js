@@ -58,10 +58,13 @@ function page() {
             <h2 className="text-xl sm:text-2xl font-semibold text-white mb-3">Get in Touch</h2>
             <div className="text-gray-300 space-y-3 text-sm sm:text-base">
               <div>
-                <strong>Email:</strong> <a href="mailto:twilight.roger.dx@gmail.com" className="text-blue-400 hover:underline">twilight.roger.dx@gmail.com</a>
+                <strong>Instagram:</strong> <a href="https://www.instagram.com/thewolfcoder" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">thewolfcoder</a>
               </div>
               <div>
                 <strong>GitHub:</strong> <a href="https://github.com/Vimal-79" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Vimal-79</a>
+              </div>
+              <div>
+                <strong>X:</strong> <a href="https://x.com/Vimal_764" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Vimal_764</a>
               </div>
               <div>
                 <strong>Response Time:</strong> We aim to respond within 24-48 hours.
@@ -118,7 +121,7 @@ function page() {
         )}
         <div className="text-center">
           <p className="text-gray-200 text-sm sm:text-base">
-            Thank you for using BitLink! Your feedback helps me improve.
+            Thank you for using BitLink! Your feedback helps us improve.
           </p>
         </div>
       </div>
